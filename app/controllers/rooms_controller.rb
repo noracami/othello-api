@@ -16,6 +16,7 @@ class RoomsController < ApplicationController
   # POST /rooms.json
   def create
     @room = Room.new(room_params)
+    @room.generate_room_id if @room.channel_id.blank?
 
     if @room.save
       render :show, status: :created, location: @room
